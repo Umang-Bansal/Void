@@ -11,7 +11,7 @@ import mss.tools
 from PIL import Image
 import google.generativeai as genai
 from plyer import notification
-from notion_tools import read_tasks
+from tools.notion_tools import read_tasks
 import queue
 import threading
 from filelock import FileLock
