@@ -10,17 +10,11 @@ from langgraph.prebuilt import create_react_agent
 from typing import Dict, TypedDict, Annotated, Sequence, List, Any, Optional
 from langchain_core.messages import BaseMessage, HumanMessage, AIMessage, SystemMessage
 from langgraph.graph import StateGraph, END
-from spot import music_player_tools
 from langgraph.prebuilt import ToolNode
-from spotify import *
 import json
 from langchain_core.messages import ToolMessage
 from pydantic import BaseModel, Field
-from notion_tools import notion_tools
-from gmail_tools import gmail_tools
-from calendar_tools import calendar_tools
-from tweet_test import twitter_tools
-from jigsaw import web_search_tool
+
 from enum import Enum
 from typing import Optional
 from langchain.tools import StructuredTool
@@ -28,7 +22,6 @@ import pickle
 from datetime import datetime, timedelta
 from pathlib import Path
 import threading
-from procrastination import procrastination_check_tool, check_procrastination_notifications
 import asyncio
 import keyboard
 import speech_recognition as sr
@@ -43,10 +36,18 @@ import soundfile as sf
 import torch
 import logging
 import warnings
+# Import all tools
+#from tools import all_tools
+# Or import specific tool groups
+from tools import music_player_tools, notion_tools, gmail_tools, calendar_tools, twitter_tools, web_search_tool, screen_tools, keyboard_tools
 
+# Import memory components
+from memory_manager import MemorySystem, BackgroundMemoryProcessor
+
+# Import procrastination components
+from anti_procrastination import procrastination_check_tool, check_procrastination_notifications
 # Import our new tools for screen analysis and keyboard control
-from screen import screen_tools
-from keyboard_tools import keyboard_tools
+
 
 # Suppress all warnings
 warnings.filterwarnings("ignore")
@@ -64,7 +65,6 @@ import numpy as np
 from typing import Dict, List, Tuple, Any
 import time
 import queue
-from memoryprocessor import BackgroundMemoryProcessor, MemorySystem
 
 # Initialize Groq client for Whisper STT
 groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))

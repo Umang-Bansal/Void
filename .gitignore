@@ -39,7 +39,6 @@ Thumbs.db
 screenshots/
 logs/
 memory/
-memory_manager/
 token.pickle
 credentials*.json
 *.env
